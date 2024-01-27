@@ -7,7 +7,7 @@ interface mainprops {
     date: string;
     text: string;
     number: number;
-    button: JSX.Element; 
+   
 
 }
 

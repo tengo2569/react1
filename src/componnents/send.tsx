@@ -3,40 +3,40 @@ import  { useState, useRef } from 'react';
 import './send.css';
 
 function Send() {
-    const [newContent, setNewContent] = useState('');
-    const [showComment, setShowComment] = useState(false); // State to control visibility
-    const [editMode, setEditMode] = useState(false); // State to control edit mode
-    const [showWarning, setShowWarning] = useState(false); // State to control warning popup
+    const [newContent, setnewcontent] = useState('');
+    const [showComment, setshowcomment] = useState(false); 
+    const [editMode, seteditmode] = useState(false);
+    const [showWarning, setshowarning] = useState(false); 
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleSendClick = () => {
         if (inputRef.current) {
             const inputText = inputRef.current.value;
-            setNewContent(inputText);
-            setShowComment(true); // Show the comment div when "SEND" button is clicked
-            setEditMode(false); // Turn off edit mode after sending
+            setnewcontent(inputText);
+            setshowcomment(true); 
+            seteditmode(false); 
         }
     };
 
-    const handleCloseClick = () => {
-        setShowComment(false); // Hide the comment div when close button is clicked
+    const handlecloseclick = () => {
+        setshowcomment(false); 
     };
 
-    const handleDeleteClick = () => {
-        setShowWarning(true); // Show the warning popup when delete button is clicked
+    const handledeleteclick = () => {
+        setshowarning(true); 
     };
 
-    const handleConfirmDelete = () => {
-        setShowWarning(false); // Hide the warning popup
-        setNewContent(''); // Clear the content when delete is confirmed
+    const handledelclick = () => {
+        setshowarning(false); 
+        setnewcontent(''); 
     };
 
-    const handleCancelDelete = () => {
-        setShowWarning(false); // Hide the warning popup when delete is canceled
+    const handlenodelete = () => {
+        setshowarning(false);
     };
 
-    const handleEditClick = () => {
-        setEditMode(true); // Enable edit mode when edit button is clicked
+    const hanndleeditclick = () => {
+        seteditmode(true); 
     };
 
     return (
@@ -50,19 +50,21 @@ function Send() {
                         <p className='date'>just now</p>
                     </div>
                     {editMode ? (
-                        <input ref={inputRef} className='editInput' value={newContent} onChange={(e) => setNewContent(e.target.value)} />
+                        <input ref={inputRef} className='editInput' value={newContent} onChange={(e) => setnewcontent(e.target.value)} />
                     ) : (
                         <div className='newcont'>{newContent}</div>
                     )}
                     <div className="lastline">
-                        <button className='delete' onClick={handleDeleteClick}><img src="./bin.svg" alt="" /> <img src="./delete.svg" alt="" /></button>
-                        <button className='edit' onClick={handleEditClick}><img src="./pen.svg" alt="" /> <img src="./edit.svg" alt="" /></button>
+                        <button className='delete' onClick={handledeleteclick}><img src="./bin.svg" alt="" /> <img src="./delete.svg" alt="" /></button>
+                        <button className='edit' onClick={hanndleeditclick}><img src="./pen.svg" alt="" /> <img src="./edit.svg" alt="" /></button>
                     </div>
-                    <button onClick={handleCloseClick} className='exit'> <img className='newimg' src="./new.png" alt="" /></button>
+                    <button onClick={handlecloseclick} className='exit'> <img className='newimg' src="./new.png" alt="" /></button>
                 </div>
             )}
             <div className='sendbox'>
+                <form action="">
                 <input ref={inputRef} className='combox' placeholder='Type here ...' />
+                </form>
                 <div className="personal">
                     <img className='boy' src="./tengo.jpg" alt="" />
                     <button className='lastbtn' onClick={handleSendClick}><h4>SEND</h4></button>
@@ -74,8 +76,8 @@ function Send() {
                     <h5>Are you sure you want to delete this comment? This will remove the comment and can’t be undone.</h5>
                     <div className="yesno">
                   
-                    <button className='no' onClick={handleCancelDelete}>NO,CANCEL</button>
-                    <button className='yes' onClick={handleConfirmDelete}>YES, DELETE</button>
+                    <button className='no' onClick={handlenodelete}>NO,CANCEL</button>
+                    <button className='yes' onClick={handledelclick}>YES, DELETE</button>
                     </div>
                 </div>
             )}
